@@ -2,25 +2,36 @@ package com.store.main;
 
 import java.util.List;
 
-import com.store.calculator.FruitPrices;
+import com.store.calculator.FruitPriceCalculator;
 import com.store.entity.Basket;
 import com.store.entity.item.Fruit;
 
+/**
+ * A class to model the actions of a grocery store
+ * @author Owner
+ *
+ */
 public class GroceryStore {
 	
-	public static double checkout(Basket basket) {
+	private final FruitPriceCalculator calculator;
+
+	public GroceryStore(FruitPriceCalculator calculator) {
+		super();
+		this.calculator = calculator;
+	}
+	
+	public Basket getBasket() {
+		return new Basket();
+	}
+
+	public double checkout(Basket basket) {
 		List<Fruit> fruits = basket.getItems();
 
 		double totalCost = 0.0;
 		for (Fruit fruit : fruits) {
-			double weight = fruit.getTotalWeightKilos();
-			Class<? extends Fruit> fruitClass = fruit.getClass();
-			Double pricePerKilo = FruitPrices.getPrice(fruitClass);
-			if (pricePerKilo == null) {
-				throw new IllegalArgumentException("Price for fruit " + fruitClass + " is unavailable");
-			}
-			double fruitPrice = weight * pricePerKilo.doubleValue();
-			totalCost = totalCost + fruitPrice;
+			System.out.println(fruit);
+			double price = calculator.calculatePrice(fruit);
+			totalCost = totalCost + price;
 		}
 		return totalCost;
 	}

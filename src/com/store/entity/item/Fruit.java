@@ -7,15 +7,13 @@ package com.store.entity.item;
  *
  */
 public abstract class Fruit {
-	
+
 	private double totalWeightKilos;
-	private String colour;
 	private int quantity;
 
-	public Fruit(double totalWeightKilos, String colour, int quantity) {
+	public Fruit(double totalWeightKilos, int quantity) {
 		super();
 		this.totalWeightKilos = totalWeightKilos;
-		this.colour = colour;
 		this.quantity = quantity;
 	}
 
@@ -23,11 +21,12 @@ public abstract class Fruit {
 		return totalWeightKilos;
 	}
 
-	public String getColour() {
-		return colour;
-	}
-
 	public int getQuantity() {
 		return quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "quantity=" + this.quantity + ", total weight=" + this.totalWeightKilos + "kg";
 	}
 }

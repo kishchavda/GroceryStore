@@ -2,7 +2,12 @@ package com.store.entity.item;
 
 public class Banana extends Fruit {
 
-	public Banana(double totalWeightKilos, String colour, int quantity) {
-		super(totalWeightKilos, colour, quantity);
+	public Banana(double totalWeightKilos, int quantity) {
+		super(totalWeightKilos, quantity);
+	}
+
+	@Override
+	public String toString() {
+		return "Banana: " + super.toString();
 	}
 }
